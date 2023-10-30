@@ -52,4 +52,4 @@ Puedes personalizar y expandir este juego agregando más funcionalidades, como e
 
 ## Ejemplo
 
-Puedes encontrar un ejemplo de un juego estilo Flappy Bird en p5.js [aquí](flappybird.io).
+Puedes encontrar un ejemplo de un juego estilo Flappy Bird en p5.js [aquí](https://flappybird.io/).
