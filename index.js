@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(400, 600);
+  createCanvas(350, 600);
   bird = new Bird(birdImagen);
   pipes.push(new Pipe(pipeImagen));
   bgImagen.width = width;
@@ -22,9 +22,8 @@ function setup() {
 }
 
 function draw() {
-
-  image(bgImagen, 0, 0, width, height, bgImagePos, 0, bgImagen.width, bgImagen.height);
-  bgImagePos = (bgImagePos + 2) % bgImagen.width;
+  //backgraund f
+  image(bgImagen, 0, 0, width, height, bgImagePos, 0, bgImagen.width, bgImagen.height); 
 
   bird.update();
   bird.show();
