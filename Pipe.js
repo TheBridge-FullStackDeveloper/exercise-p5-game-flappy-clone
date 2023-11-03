@@ -1,10 +1,10 @@
 class Pipe {
-  constructor(x, y, gapX, gapY, pipeImage) {
+  constructor(x, y, pipeImage, w, h) {
     this.x = x;
     this.y = y;
-    this.gapX = gapX;
-    this.gapY = gapY;
     this.pipeImage = pipeImage;
+    this.w = w;
+    this.h = h;
   }
 
   draw() {

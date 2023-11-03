@@ -9,15 +9,23 @@ class Bird {
     this.jumpStrength = -10; // Adjust this value for jump height
   }
 
+  isColliding(object) {
+    return (
+      this.x < object.x + object.w &&
+      this.x + this.w > object.x &&
+      this.y < object.y + object.w &&
+      this.y + this.w > object.y
+    );
+  }
+
   update() {
-    // Apply gravity to the bird
-    this.velocity += this.gravity;
-
-    // Update the bird's position based on velocity
-    this.y += this.velocity;
-
-    // Keep the bird within the canvas bounds (adjust as needed)
-    this.y = constrain(this.y, 0, height - this.birdImage.height);
+    this.velocity += this.gravity; // Apply gravity to the bird
+    this.y += this.velocity; // Update the bird's position based on velocity
+    this.y = constrain(this.y, 0, height - this.birdImage.height); // Keep the bird within the canvas bounds (adjust as needed)
+    // Check for collisions
+    //if (this.isColliding(pipe)) {
+      console.log("Collision with pipe");
+    //}
   }
 
   jump() {
