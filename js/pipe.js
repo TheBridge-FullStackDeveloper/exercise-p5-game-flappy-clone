@@ -13,8 +13,8 @@ class Pipe {
   }
 
   hits(bird) {
-    if (bird.y + 32 < this.top || bird.y + 32 > height - this.bottom) {
-      if (bird.x + 32 > this.x && bird.x + 32 < this.x + this.w) {
+    if (bird.y < this.top || bird.y + 32 > height - this.bottom) {
+      if (bird.x + 32 > this.x && bird.x < this.x + this.w) {
         this.collision = true;
         return true;
       }
@@ -24,8 +24,28 @@ class Pipe {
   }
 
   draw() {
-    image(this.greenPipeTop, this.x, 0, this.w, this.top);
-    image(this.greenPipe, this.x, height - this.bottom, this.w, this.bottom);
+    image(
+      this.greenPipeTop,
+      this.x,
+      0,
+      this.w,
+      this.top,
+      0,
+      this.greenPipeTop.height - this.top,
+      this.w,
+      this.top
+    );
+    image(
+      this.greenPipe,
+      this.x,
+      height - this.bottom,
+      this.w,
+      this.bottom,
+      0,
+      0,
+      this.w,
+      this.bottom
+    );
   }
 
   update() {

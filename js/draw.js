@@ -2,7 +2,16 @@ let backgroundImg;
 let bird;
 let ground;
 const pipes = [];
-let numberOne, numberTwo, numberThree, numberFour, numberFive, numberSix, numberSeven, numberEight, numberNine, numberZero;
+let numberOne,
+  numberTwo,
+  numberThree,
+  numberFour,
+  numberFive,
+  numberSix,
+  numberSeven,
+  numberEight,
+  numberNine,
+  numberZero;
 let score = 0;
 
 function preload() {
@@ -24,6 +33,9 @@ function preload() {
   numberEight = loadImage("./assets/sprites/8.png");
   numberNine = loadImage("./assets/sprites/9.png");
   numberZero = loadImage("./assets/sprites/0.png");
+  hitSound = loadSound("./assets/audio/hit.wav");
+  pointSound = loadSound("./assets/audio/point.wav");
+  wingSound = loadSound("./assets/audio/wing.wav");
 }
 
 function setup() {
@@ -41,9 +53,14 @@ function draw() {
     pipes[i].update();
 
     if (pipes[i].hits(bird)) {
-      image(gameOver,(width-gameOver.width)/2, (height-gameOver.height)/2)
-      console.log("GAME OVER");
+      image(
+        gameOver,
+        (width - gameOver.width) / 2,
+        (height - gameOver.height) / 2
+      );
+      hitSound.play();
       noLoop();
+      resetTimer = setTimeout(resetGame, 3000);
     }
 
     if (pipes[i].offscreen()) {
@@ -52,6 +69,7 @@ function draw() {
     if (!pipes[i].passed && pipes[i].x + pipes[i].w < bird.x) {
       pipes[i].passed = true;
       scoreDisplay.increaseScore();
+      pointSound.play();
     }
   }
 
@@ -62,11 +80,20 @@ function draw() {
     pipes.push(new Pipe());
   }
   groundMoving();
-  scoreDisplay.draw()
+  scoreDisplay.draw();
 }
 
 function keyPressed() {
   if (key === " ") {
     bird.up();
+    wingSound.play();
   }
+}
+
+function resetGame() {
+  bird = new Bird();
+  scoreDisplay = new ScoreDisplay();
+  pipes.length = 0;
+  score = 0;
+  loop();
 }
