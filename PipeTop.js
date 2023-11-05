@@ -11,12 +11,12 @@ class PipeTop {
     return (
       this.x < object.x + object.w &&
       this.x + this.w > object.x &&
-      this.y < object.y + object.w &&
-      this.y + this.w > object.y
+      this.y < object.y + object.h &&
+      this.y + this.h > object.y
     );
   }
 
   draw() {
-    image(this.pipeImageTop, this.x, this.y, this.w, this.h);
+    image(this.pipeImageTop, this.x, this.y);
   }
 }
