@@ -2,34 +2,37 @@ let bird;
 let pipes = [];
 let score = 0;
 let minPipeHeight = 50;
-let bgImagen;
-let birdImagen;
-let pipeImagen;
+let bgImage;
+let bgImagePos = 0;
+let birdImage;
+let pipeImageBot;
+let pipeImageTop;
 
 function preload() {
-  bgImagen = loadImage('background-day.png');
-  birdImagen = loadImage('redbird-upflap.png');
-  pipeImagen = loadImage('pipe-green.png');
+  bgImage = loadImage('./assets/background-day.png');
+  birdImage = loadImage('./assets/redbird-upflap.png');
+  pipeImageBot = loadImage('./assets/pipe-green.png');
+  pipeImageTop = loadImage('./assets/pipe-green-top.png');
 }
 
 function setup() {
   createCanvas(350, 600);
-  bird = new Bird(birdImagen);
-  pipes.push(new Pipe(pipeImagen));
-  bgImagen.width = width;
-  bgImagen.height = height;
+  bird = new Bird(birdImage);
+  pipes.push(new Pipe(pipeImageBot, pipeImageTop));
+  bgImage.width = width;
+  bgImage.height = height;
   bgImagePos = 0;
 }
 
 function draw() {
-  //backgraund f
-  image(bgImagen, 0, 0, width, height, bgImagePos, 0, bgImagen.width, bgImagen.height); 
+  // Background
+  image(bgImage, 0, 0, width, height, bgImagePos, 0, bgImage.width, bgImage.height);
 
   bird.update();
   bird.show();
 
   if (frameCount % 100 === 0) {
-    pipes.push(new Pipe(pipeImagen));
+    pipes.push(new Pipe(pipeImageBot, pipeImageTop));
   }
 
   for (let i = pipes.length - 1; i >= 0; i--) {

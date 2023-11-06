@@ -33,27 +33,23 @@ class Bird {
 }
 
 class Pipe {
-  constructor(img) {
+  constructor(imgBot, imgTop) {
     this.top = random(height / 2.5);
     this.bottom = random(height / 2.5);
     this.x = width;
     this.w = 50;
     this.speed = 2;
-    this.img = img;
+    this.imgBot = imgBot;
+    this.imgTop = imgTop;
   }
 
-  pass(bird) {
-    if (this.x + this.w < bird.x) {
-      return true; // La tubería ha pasado al pájaro
-    } else {
-      return false;
-    }
-  }
   show() {
-    image(this.img, this.x, 0, this.w, this.top,);
-    image(this.img, this.x, height - this.bottom, this.w, this.bottom);
-  }
+    // Dibuja la parte inferior de la tubería
+    image(this.imgBot, this.x, height - this.bottom, this.w, this.bottom);
 
+    // Dibuja la parte superior de la tubería
+    image(this.imgTop, this.x, 0, this.w, this.top);
+  }
   update() {
     this.x -= this.speed;
   }
