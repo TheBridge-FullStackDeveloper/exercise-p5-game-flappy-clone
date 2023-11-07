@@ -86,11 +86,11 @@ function draw() {
       }
       if (pipeTop.isColliding(myBird)) {
         console.log("Collision");
-        collisions++; 
+        collisions++;
       }
     }
 
-    //The game is over after getting more than 100 points in collisions. 
+    //The game is over after getting more than 100 points in collisions.
     if (collisions > 100) {
       gameOver = true;
     }
